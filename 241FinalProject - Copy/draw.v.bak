@@ -1,0 +1,202 @@
+module draw(Enable, inX, inY, inColour, erase, move, load, Left, Right, Up, Down, CLOCK_50, outX, outY, outColour, X, Y, done);
+	input Enable;
+	input Left, Right, Up, Down;
+
+	input erase;
+	input move;
+	input load;
+	input CLOCK_50;
+	input [7:0]inX;
+	input [6:0]inY;
+	input [2:0]inColour;
+	output reg [7:0]outX;
+	output reg [6:0]outY;
+	output reg [2:0]outColour;
+	output reg done;
+	
+	reg [12:0] q;
+	reg [5:0] q2;
+	reg [14:0] q3;
+	reg [2:0]cursorColour;
+	output reg [7:0]X; //cursor X position
+	output reg [6:0]Y;	//cursor Y position
+	reg [2:0]quarter;
+	
+	always @(posedge CLOCK_50)
+		begin
+			if(Enable)//this means draw just the background
+				begin
+					if (q[12:7] < 6'b111100)
+						begin
+							q <= q + 1;
+							done <= 1'b0;
+						end
+					else
+						begin
+							q <= 0;
+							done <= 1'b1;
+						end
+				end
+			else //this means drawing the cursor and background
+				begin
+					if (q[12:7] < 6'b111100)
+						begin
+							q <= q + 1;
+							
+						end
+					else
+						begin
+							q <= 0;
+							quarter <= quarter + 1;
+						end
+					if(q2 < 6'd63)
+						begin
+							q2 <= q2 + 1;
+							if(erase == 1'b0)
+								done <= 0;
+						end
+					else
+						begin
+							q2 <= 0;
+							if(erase == 1'b0)
+								done <= 1;
+						end
+					if(q3 < 15'b100101100000000)
+						begin
+							q3 <= q3 + 1;
+							if(erase == 1'b1)
+								done <= 0;
+						end
+					else
+						begin
+							q3 <= 0;
+							if(erase == 1'b1)
+								done <= 1;
+						end
+				end
+		end
+		
+	wire [2:0] blueColour;
+	wire [2:0] greenColour;
+	wire [2:0] redColour;
+	wire [2:0] yellowColour;
+	
+
+	
+	BlueCursor b1(8*q2[5:3] + q2[2:0] + 3, CLOCK_50, blueColour);
+	GreenCursor g1(8*q2[5:3] + q2[2:0] + 3, CLOCK_50, greenColour);
+	RedCursor r1(8*q2[5:3] + q2[2:0] + 3, CLOCK_50, redColour);
+	YellowCursor y1(8*q2[5:3] + q2[2:0] + 3, CLOCK_50, yellowColour);
+		
+	always@(posedge CLOCK_50)
+		begin
+			if(load)
+				begin
+					X <= inX;
+					Y <= inY;
+				end
+			if(erase == 1'b1) // if erase is active, draw every quarter as the original colour
+				begin
+					if(X < 8'd80 && Y < 7'd60)
+						begin
+							cursorColour <= 3'd1;
+						end
+					else if(X > 8'd80 && Y < 7'd60)
+						begin
+							cursorColour <= 3'd2;
+						end
+					else if(X < 8'd80 && Y > 7'd60)
+						begin
+							cursorColour <= 3'd4;
+						end
+					else if(X > 8'd80 && Y > 7'd60)
+						begin
+							cursorColour <= 3'd6;
+						end
+				end
+			else //else, select the correct cursor colour
+				begin
+					if(X < 8'd80 && Y < 7'd60)
+						begin
+							cursorColour <= blueColour;
+						end
+					else if(X > 8'd80 && Y < 7'd60)
+						begin
+							cursorColour <= greenColour;
+						end
+					else if(X < 8'd80 && Y > 7'd60)
+						begin
+							cursorColour <= redColour;
+						end
+					else if(X > 8'd80 && Y > 7'd60)
+						begin
+							cursorColour <= yellowColour;
+						end
+				end
+			//Move the cursor in the selected direction
+			if(move && Right)
+				X <= X + 1;
+			if(move && Left)
+				X <= X - 1;
+			if(move && Down)
+				Y <= Y + 1;
+			if(move && Up)
+				Y <= Y - 1;
+		end
+		
+	always @(CLOCK_50)
+		begin
+			if(Enable) // draw the normal game without cursor
+				begin
+					outColour <= inColour;
+					outY <= inY + q[12:7];
+					if(q[6:0] < 7'b1010000)
+						outX <= inX + q[6:0];
+				end
+			else
+				begin
+					if(erase == 1'b0) //if its not time to erase, draw the cursor in its position
+						begin
+							outColour <= cursorColour;
+							outY <= Y + q2[5:3];
+							outX <= X + q2[2:0];
+						end
+					else
+						begin
+							if(/*X < 8'd80 && Y < 7'd60*/ quarter == 3'd0)
+								begin
+									outColour <= 3'd1;
+									outY <= 0 + q[12:7];
+									if(q[6:0] < 7'b1010000)
+										outX <= 0 + q[6:0];
+								end
+							else if(/*X > 8'd80 && Y < 7'd60*/ quarter == 3'd1)
+								begin
+									outColour <= 3'd2;
+									outY <= 0 + q[12:7];
+									if(q[6:0] < 7'b1010000)
+										outX <= 80 + q[6:0];
+								end
+							else if(/*X < 8'd80 && Y > 7'd60*/ quarter == 3'd2)
+								begin
+									outColour <= 3'd4;
+									outY <= 60 + q[12:7];
+									if(q[6:0] < 7'b1010000)
+										outX <= 0 + q[6:0];
+								end
+							else if(/*X > 8'd80 && Y > 7'd60*/ quarter == 3'd3)
+								begin
+									outColour <= 3'd6;
+									outY <= 60 + q[12:7];
+									if(q[6:0] < 7'b1010000)
+										outX <= 80 + q[6:0];
+								end
+						end
+				end
+		end
+		
+endmodule
+
+
+
+

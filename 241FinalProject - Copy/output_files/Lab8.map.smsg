@@ -1,0 +1,5 @@
+Info (10281): Verilog HDL Declaration information at sequenceDetector.v(11): object "correct" differs only in case from object "Correct" in the same scope File: C:/Users/allan/Desktop/28th/241FinalProject - Copy/sequenceDetector.v Line: 11
+Info (10281): Verilog HDL Declaration information at gameLogic.v(11): object "displaySequence" differs only in case from object "DISPLAYSEQUENCE" in the same scope File: C:/Users/allan/Desktop/28th/241FinalProject - Copy/gameLogic.v Line: 11
+Info (10281): Verilog HDL Declaration information at drawControl.v(13): object "draw" differs only in case from object "DRAW" in the same scope File: C:/Users/allan/Desktop/28th/241FinalProject - Copy/drawControl.v Line: 13
+Info (10281): Verilog HDL Declaration information at drawControl.v(10): object "erase" differs only in case from object "ERASE" in the same scope File: C:/Users/allan/Desktop/28th/241FinalProject - Copy/drawControl.v Line: 10
+Info (10281): Verilog HDL Declaration information at drawControl.v(12): object "move" differs only in case from object "MOVE" in the same scope File: C:/Users/allan/Desktop/28th/241FinalProject - Copy/drawControl.v Line: 12

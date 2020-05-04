@@ -1,0 +1,277 @@
+module keyboard(CLOCK_50, KEY, PS2_CLK, PS2_DAT, last_data_received);
+	
+	// Outputs
+//	HEX0,
+//	HEX1,
+//	HEX2,
+//	HEX3,
+//	HEX4,
+//	HEX5,
+//	HEX6,
+//	HEX7,
+
+/*****************************************************************************
+ *                           Parameter Declarations                          *
+ *****************************************************************************/
+
+
+/*****************************************************************************
+ *                             Port Declarations                             *
+ *****************************************************************************/
+
+// Inputs
+input				CLOCK_50;
+input		[3:0]	KEY;
+
+// Bidirectionals
+inout				PS2_CLK;
+inout				PS2_DAT;
+
+// Outputs
+//output		[6:0]	HEX0;
+//output		[6:0]	HEX1;
+//output		[6:0]	HEX2;
+//output		[6:0]	HEX3;
+//output		[6:0]	HEX4;
+//output		[6:0]	HEX5;
+//output		[6:0]	HEX6;
+//output		[6:0]	HEX7;
+
+//output		[9:0] LEDR;
+//wire output_data;
+/*****************************************************************************
+ *                 Internal Wires and Registers Declarations                 *
+ *****************************************************************************/
+
+// Internal Wires
+wire		[7:0]	ps2_key_data;
+wire				ps2_key_pressed;
+
+// Internal Registers
+output reg			[7:0]	last_data_received;
+
+// State Machine Registers
+
+/*****************************************************************************
+ *                         Finite State Machine(s)                           *
+ *****************************************************************************/
+
+
+/*****************************************************************************
+ *                             Sequential Logic                              *
+ *****************************************************************************/
+
+ reg [4:0] current_state,  next_state;
+ reg pressingSig, resettingSig;
+ 
+ localparam S_WAIT = 5'd0,
+				S_PRESSING = 5'd1,
+				S_RELEASE = 5'd2,
+				S_RESET = 5'd3;
+				
+
+always @(*) begin
+
+	case(current_state)
+		S_WAIT : next_state = ps2_key_pressed ? S_PRESSING : S_WAIT;
+		S_PRESSING : next_state = (ps2_key_data == 8'hf0) ? S_RELEASE: S_PRESSING;
+		S_RELEASE : next_state = (ps2_key_data != 8'hf0) ? S_RESET: S_RELEASE;
+		S_RESET : next_state = ps2_key_pressed ? S_WAIT: S_RESET;
+	endcase
+	
+end
+
+always @(*) begin
+
+	pressingSig = 1'b0;
+	resettingSig = 1'b0;
+	
+	case(current_state)
+	
+		S_PRESSING: pressingSig = 1'b1;
+		S_RESET: resettingSig = 1'b1;
+		
+	endcase
+	
+end
+
+
+always @(posedge CLOCK_50)
+	
+	begin
+		current_state <= next_state;
+	end
+	
+
+
+always @(posedge CLOCK_50)
+
+	begin
+		if (KEY[0] == 1'b0 || resettingSig)
+			last_data_received <= 8'h00;
+		else if (pressingSig == 1'b1)
+			last_data_received <= ps2_key_data;
+	
+//	else if(ps2_key_pressed == 1'b0)
+//		last_data_received <= 8'b0;
+		
+	end
+
+/*****************************************************************************
+ *                            Combinational Logic                            *
+ *****************************************************************************/
+
+//assign HEX2 = 7'h7F;
+//assign HEX3 = 7'h7F;
+//assign HEX4 = 7'h7F;
+//assign HEX5 = 7'h7F;
+//assign HEX6 = 7'h7F;
+//assign HEX7 = 7'h7F;
+
+
+
+
+
+/*****************************************************************************
+ *                              Internal Modules                             *
+ *****************************************************************************/
+
+PS2_Controller PS2 (
+	// Inputs
+	.CLOCK_50			(CLOCK_50),
+	.reset				(~KEY[0]),
+
+	// Bidirectionals
+	.PS2_CLK			(PS2_CLK),
+ 	.PS2_DAT			(PS2_DAT),
+
+	// Outputs
+	.received_data		(ps2_key_data),
+	.received_data_en	(ps2_key_pressed)
+);
+
+//Hexadecimal_To_Seven_Segment Segment0 (
+//	// Inputs
+//	.hex_number			(last_data_received[3:0]),
+//
+//	// Bidirectional
+//
+//	// Outputs
+//	.seven_seg_display	(HEX0)
+//);
+//
+//Hexadecimal_To_Seven_Segment Segment1 (
+//	// Inputs
+//	.hex_number			(last_data_received[7:4]),
+//
+//	// Bidirectional
+//
+//	// Outputs
+//	.seven_seg_display	(HEX1)
+//);
+
+
+//reg up, down, left, right, enter;
+//
+//
+//
+//always@(posedge CLOCK_50)
+//
+//	begin
+//
+//		if(ps2_key_data == 8'b01110101)
+//													up <= 1'b1;
+//													
+//		else if(ps2_key_data == 8'b01110010)
+//													down <= 1'b1;
+//													
+//		else if(ps2_key_data == 8'b01101011)
+//													left <= 1'b1;
+//													
+//		else if(ps2_key_dat == 8'b01011010)
+//													enter <= 1'b1;
+//		else 
+//				begina == 8'b01110100)
+//													right <= 1'b1;
+//													
+//		else if(ps2_key_data
+//							up <= 1'b0;
+//							down <= 1'b0;
+//							left <= 1'b0;
+//							right <= 1'b0;
+//							enter <= 1'b0;
+//				end
+//
+//
+//	end
+//		
+//		 assign LEDR[9] = up;
+//		 assign LEDR[8] = down;
+//		 assign LEDR[7] = left;
+//		 assign LEDR[6] = right;
+//		 assign LEDR[0] = enter;
+
+	
+endmodule
+
+
+
+module kbDecoder(output_keyboard, left, right, up, down, enter);
+
+input [7:0] output_keyboard;
+output reg left, right, up, down, enter;
+
+always @(*) begin
+
+	left = 1'b0;
+	right = 1'b0;
+	up = 1'b0;
+	down = 1'b0;
+	enter = 1'b0;
+	
+	case(output_keyboard)
+	
+		8'h75: up = 1'b1;
+		8'h72: down = 1'b1;
+		8'h6b: left = 1'b1;
+		8'h74: right = 1'b1;
+		8'h5a: enter = 1'b1;
+		
+	endcase
+	
+end
+
+endmodule
+	
+module test(CLOCK_50, KEY, PS2_CLK, PS2_DAT, LEDR[9:0] );
+	
+	
+	input CLOCK_50;
+	input [3:0] KEY;
+
+	inout	PS2_CLK;
+	inout	PS2_DAT;
+
+	output [9:0] LEDR;
+
+	
+	wire left, right, up, down, enter, resetn;
+	wire [7:0] output_keyboard;
+
+	assign resetn = KEY[0:0];
+
+	assign up = LEDR[9];
+	assign down = LEDR[8];
+	assign right = LEDR[7];
+	assign left = LEDR[6];
+	assign enter = LEDR[0];
+
+
+	keyboard inputsfromKB(CLOCK_50, resetn, PS2_CLK, PS2_DAT, output_keyboard);
+
+	kbDecoder(output_keyboard, left, right, up, down, enter);
+
+endmodule
+
+
+

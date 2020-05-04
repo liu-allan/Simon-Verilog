@@ -1,0 +1,309 @@
+////SW[0] reset when 0
+////SW[4:1] input signal
+//
+////KEY[0] clock signal
+//
+////LEDR[3:0] displays current state
+////LEDR[9] displays output
+//
+//module sequenceDetector(SW, KEY, LEDR);
+//    input [9:0] SW;
+//    input [3:0] KEY;
+//    output [9:0] LEDR;
+//
+//    wire clock, resetn, out_light;
+//	 wire [3:0]w;
+//    
+//    reg [3:0] y_Q, Y_D; // y_Q represents current state, Y_D represents next state
+//    
+//    localparam A = 4'b0000, B = 4'b0001, C = 4'b0010, D = 4'b0011, E = 4'b0100, F = 4'b0101, G = 4'b0110, H = 4'b0111, I = 4'b1000, J = 4'b1001, Correct = 4'b1010, Incorrect = 4'b1011;
+//    
+//    assign w = SW[4:1];
+//    assign clock = ~KEY[0];
+//    assign resetn = SW[0];
+//
+//    //State table
+//    //The state table should only contain the logic for state transitions
+//    //Do not mix in any output logic. The output logic should be handled separately.
+//    //This will make it easier to read, modify and debug the code.
+//    always@(*)
+//    begin: state_table
+//        case (y_Q)
+//            A: begin
+//                   if (w == 4'b0010) Y_D = B;
+//                   else Y_D = Incorrect;
+//               end
+//            B: begin
+//                   if(w == 4'b1000) Y_D = C;
+//                   else Y_D = Incorrect;
+//               end
+//            C: begin
+//						if(w == 4'b1000) Y_D = D;
+//						else Y_D = Incorrect;
+//					end
+//            D: begin
+//						if(w == 4'b0010) Y_D = E;
+//						else Y_D = Incorrect;
+//					end
+//            E: begin
+//						if(w == 4'b0100) Y_D = F;
+//						else Y_D = Incorrect;
+//					end
+//            F: begin
+//						if(w == 4'b1000) Y_D = G;
+//						else Y_D = Incorrect;
+//					end
+//            G:	begin 
+//						if(w == 4'b0001) Y_D = H;
+//						else Y_D = Incorrect;
+//					end
+//					
+//				H: begin
+//						if(w == 4'b1000) Y_D = I;
+//						else Y_D = Incorrect;
+//					end
+//				I: begin 
+//						if(w == 4'b0010) Y_D = J;
+//						else Y_D = Incorrect;
+//					end
+//				J: begin
+//						if(w == 4'b0100) Y_D = Correct;
+//						else Y_D = Incorrect;
+//					end
+//				Correct: begin
+//								Y_D = A;
+//							end
+//				Incorrect: begin
+//								Y_D = A;
+//							  end
+//							  
+//            default: Y_D = A;
+//        endcase
+//    end // state_table
+//    
+//    // State Registers
+//    always @(posedge clock)
+//    begin: state_FFs
+//        if(resetn == 1'b0)
+//            y_Q <=  A; // Should set reset state to state A
+//        else
+//            y_Q <= Y_D;
+//    end // state_FFS
+//
+//    // Output logic
+//    // Set out_light to 1 to turn on LED when in relevant states
+//    assign out_light = (y_Q == Correct);
+//
+//    assign LEDR[9] = out_light;
+//    assign LEDR[3:0] = y_Q;
+//endmodule
+
+
+
+
+
+
+//
+//
+//SW[0] reset when 0
+//SW[4:1] input signal
+//SW[9:6] input sequenceSize
+//
+//LEDR[3:0] displays current state
+//LEDR[9] displays output
+
+module sequenceDetector(SW, LEDR, KEY);
+    
+	 wire [3:0] sequenceSize;
+	 input [9:0] SW;
+    input [3:0] KEY;
+    output [9:0] LEDR;
+
+    wire clock, resetn, out_light;
+	 wire [3:0]w;
+    
+    reg [3:0] y_Q, Y_D; // y_Q represents current state, Y_D represents next state
+    
+    localparam A = 4'b0000, B = 4'b0001, C = 4'b0010, D = 4'b0011, E = 4'b0100, F = 4'b0101, G = 4'b0110, H = 4'b0111, I = 4'b1000, J = 4'b1001, Correct = 4'b1010, Incorrect = 4'b1011;
+    
+    assign w = SW[4:1];
+    assign clock = ~KEY[0];
+    assign resetn = SW[0];
+	 assign sequenceSize = SW[9:6];
+
+    //State table
+    //The state table should only contain the logic for state transitions
+    //Do not mix in any output logic. The output logic should be handled separately.
+    //This will make it easier to read, modify and debug the code.
+    always@(*)
+    begin: state_table
+        case (y_Q)
+            A: begin
+				
+					if(sequenceSize == 4'b0001) //if sequence size is 1
+						begin
+							if (w == 4'b0010) Y_D = Correct;
+							else Y_D = Incorrect;
+						end
+					else //if sequence size is anything greater than 1
+						begin
+							if (w == 4'b0010) Y_D = B;
+							else Y_D = Incorrect;
+						end
+					end
+					
+            B: begin
+				
+					if(sequenceSize == 4'b0010) // if sequence size is 2
+						begin
+							if(w == 4'b1000) Y_D = Correct;
+							else Y_D = Incorrect;
+						end
+					else //if sequence size is anything greater than 2
+						begin
+							if (w == 4'b1000) Y_D = C;
+							else Y_D = Incorrect;
+						end
+					end
+					
+            C: begin
+				
+					if(sequenceSize == 4'b0011) // if sequence size is 3
+						begin
+							if(w == 4'b1000) Y_D = Correct;
+							else Y_D = Incorrect;
+						end
+					else //if sequence size is anything greater than 3
+						begin
+							if (w == 4'b1000) Y_D = D;
+							else Y_D = Incorrect;
+						end
+					end
+					
+            D: begin
+					
+					if(sequenceSize == 4'b0100) // if sequence size is 4
+						begin
+							if(w == 4'b0010) Y_D = Correct;
+							else Y_D = Incorrect;
+						end
+					else //if sequence size is anything greater than 4
+						begin
+							if(w == 4'b0010) Y_D = E;
+							else Y_D = Incorrect;
+						end
+					end
+					
+            E: begin
+				
+					if(sequenceSize == 4'b0101) // if sequence size is 5
+						begin
+							if(w == 4'b0100) Y_D = Correct;
+							else Y_D = Incorrect;
+						end
+					else //if sequence size is anything greater than 5
+						begin
+							if(w == 4'b0100) Y_D = F;
+							else Y_D = Incorrect;
+						end
+					end
+					
+            F: begin
+					
+					if(sequenceSize == 4'b0110) // if sequence size is 6
+						begin
+							if(w == 4'b1000) Y_D = Correct;
+							else Y_D = Incorrect;
+						end
+					else //if sequence size is anything greater than 6
+						begin
+							if(w == 4'b1000) Y_D = G;
+							else Y_D = Incorrect;
+						end
+					end
+					
+					
+            G:	begin
+					
+					if(sequenceSize == 4'b0111) // if sequence size is 7
+						begin
+							if(w == 4'b0001) Y_D = Correct;
+							else Y_D = Incorrect;
+						end
+					else //if sequence size is anything greater than 7
+						begin
+							if(w == 4'b0001) Y_D = H;
+							else Y_D = Incorrect;
+						end
+					end
+					
+				H: begin
+					
+					if(sequenceSize == 4'b1000) // if sequence size is 8
+						begin
+							if(w == 4'b1000) Y_D = Correct;
+							else Y_D = Incorrect;
+						end
+					else //if sequence size is anything greater than 8
+
+						begin
+							if(w == 4'b1000) Y_D = I;
+							else Y_D = Incorrect;
+						end
+					end
+					
+				I: begin
+					
+					if(sequenceSize == 4'b1001) // if sequence size is 9
+						begin
+							if(w == 4'b0010) Y_D = Correct;
+							else Y_D = Incorrect;
+						end
+					else //if sequence size is anything greater than 9
+						begin
+							if(w == 4'b0010) Y_D = J;
+							else Y_D = Incorrect;
+						end
+					end
+					
+				J: begin
+					
+					if(sequenceSize == 4'b1010) // if sequence size is 10
+						begin
+							if(w == 4'b0100) Y_D = Correct;
+							else Y_D = Incorrect;
+						end
+					else //if sequence size is anything greater than 10
+						begin
+							if(w == 4'b0100) Y_D = Correct;
+							else Y_D = Incorrect;
+						end
+					end
+					
+				Correct: begin
+								Y_D = A;
+							end
+				Incorrect: begin
+								Y_D = A;
+							  end
+							  
+            default: Y_D = A;
+        endcase
+    end // state_table
+    
+    // State Registers
+    always @(posedge clock)
+    begin: state_FFs
+        if(resetn == 1'b0)
+            y_Q <=  A; // Should set reset state to state A
+        else
+            y_Q <= Y_D;
+    end // state_FFS
+
+    // Output logic
+    // Set out_light to 1 to turn on LED when in relevant states
+    assign out_light = (y_Q == Correct);
+
+    assign LEDR[9] = out_light;
+    assign LEDR[3:0] = y_Q;
+endmodule

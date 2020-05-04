@@ -1,0 +1,357 @@
+------------------------------------------------------------
+Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1100mV 85C Model Setup 'gameLogicFSM:top|currentState.START'
+Slack : -10.786
+TNS   : -135.634
+
+Type  : Slow 1100mV 85C Model Setup 'draw:d2|q3[5]'
+Slack : -9.639
+TNS   : -73.114
+
+Type  : Slow 1100mV 85C Model Setup 'sequenceFSM:s1|currentState.FINISH'
+Slack : -7.621
+TNS   : -152.524
+
+Type  : Slow 1100mV 85C Model Setup 'CLOCK_50'
+Slack : -7.459
+TNS   : -2326.674
+
+Type  : Slow 1100mV 85C Model Setup 'PS2_Demo:inputsfromKB|last_data_received[0]'
+Slack : -5.421
+TNS   : -59.535
+
+Type  : Slow 1100mV 85C Model Setup 'drawControl:d1|currentState.DRAW'
+Slack : -3.695
+TNS   : -3.695
+
+Type  : Slow 1100mV 85C Model Setup 'VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk'
+Slack : 33.587
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Hold 'CLOCK_50'
+Slack : -1.255
+TNS   : -1.255
+
+Type  : Slow 1100mV 85C Model Hold 'gameLogicFSM:top|currentState.START'
+Slack : -0.179
+TNS   : -0.179
+
+Type  : Slow 1100mV 85C Model Hold 'PS2_Demo:inputsfromKB|last_data_received[0]'
+Slack : 0.171
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Hold 'VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk'
+Slack : 0.452
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Hold 'draw:d2|q3[5]'
+Slack : 0.931
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Hold 'sequenceFSM:s1|currentState.FINISH'
+Slack : 2.139
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Hold 'drawControl:d1|currentState.DRAW'
+Slack : 2.623
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'gameLogicFSM:top|currentState.START'
+Slack : -1.394
+TNS   : -55.748
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'PS2_Demo:inputsfromKB|last_data_received[0]'
+Slack : -0.417
+TNS   : -11.142
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'draw:d2|q3[5]'
+Slack : 0.224
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'sequenceFSM:s1|currentState.FINISH'
+Slack : 0.278
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'drawControl:d1|currentState.DRAW'
+Slack : 0.291
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'VGA|mypll|altpll_component|auto_generated|generic_pll1~FRACTIONAL_PLL|vcoph[0]'
+Slack : 1.666
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'CLOCK_50'
+Slack : 8.816
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk'
+Slack : 18.766
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Setup 'gameLogicFSM:top|currentState.START'
+Slack : -10.648
+TNS   : -132.990
+
+Type  : Slow 1100mV 0C Model Setup 'draw:d2|q3[5]'
+Slack : -9.543
+TNS   : -72.352
+
+Type  : Slow 1100mV 0C Model Setup 'sequenceFSM:s1|currentState.FINISH'
+Slack : -7.605
+TNS   : -152.582
+
+Type  : Slow 1100mV 0C Model Setup 'CLOCK_50'
+Slack : -7.052
+TNS   : -2119.796
+
+Type  : Slow 1100mV 0C Model Setup 'PS2_Demo:inputsfromKB|last_data_received[0]'
+Slack : -5.550
+TNS   : -60.355
+
+Type  : Slow 1100mV 0C Model Setup 'drawControl:d1|currentState.DRAW'
+Slack : -3.814
+TNS   : -3.814
+
+Type  : Slow 1100mV 0C Model Setup 'VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk'
+Slack : 33.720
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Hold 'CLOCK_50'
+Slack : -1.434
+TNS   : -1.438
+
+Type  : Slow 1100mV 0C Model Hold 'gameLogicFSM:top|currentState.START'
+Slack : -0.177
+TNS   : -0.177
+
+Type  : Slow 1100mV 0C Model Hold 'PS2_Demo:inputsfromKB|last_data_received[0]'
+Slack : 0.147
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Hold 'VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk'
+Slack : 0.405
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Hold 'draw:d2|q3[5]'
+Slack : 0.867
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Hold 'sequenceFSM:s1|currentState.FINISH'
+Slack : 1.984
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Hold 'drawControl:d1|currentState.DRAW'
+Slack : 2.698
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'gameLogicFSM:top|currentState.START'
+Slack : -1.299
+TNS   : -52.670
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'PS2_Demo:inputsfromKB|last_data_received[0]'
+Slack : -0.464
+TNS   : -11.708
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'draw:d2|q3[5]'
+Slack : 0.207
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'drawControl:d1|currentState.DRAW'
+Slack : 0.255
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'sequenceFSM:s1|currentState.FINISH'
+Slack : 0.286
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'VGA|mypll|altpll_component|auto_generated|generic_pll1~FRACTIONAL_PLL|vcoph[0]'
+Slack : 1.666
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'CLOCK_50'
+Slack : 8.795
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk'
+Slack : 18.742
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Setup 'gameLogicFSM:top|currentState.START'
+Slack : -6.366
+TNS   : -71.801
+
+Type  : Fast 1100mV 85C Model Setup 'draw:d2|q3[5]'
+Slack : -5.385
+TNS   : -41.637
+
+Type  : Fast 1100mV 85C Model Setup 'CLOCK_50'
+Slack : -4.908
+TNS   : -1641.290
+
+Type  : Fast 1100mV 85C Model Setup 'sequenceFSM:s1|currentState.FINISH'
+Slack : -3.911
+TNS   : -77.025
+
+Type  : Fast 1100mV 85C Model Setup 'PS2_Demo:inputsfromKB|last_data_received[0]'
+Slack : -2.985
+TNS   : -33.085
+
+Type  : Fast 1100mV 85C Model Setup 'drawControl:d1|currentState.DRAW'
+Slack : -1.837
+TNS   : -1.837
+
+Type  : Fast 1100mV 85C Model Setup 'VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk'
+Slack : 36.034
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Hold 'CLOCK_50'
+Slack : -0.610
+TNS   : -0.610
+
+Type  : Fast 1100mV 85C Model Hold 'gameLogicFSM:top|currentState.START'
+Slack : -0.267
+TNS   : -0.430
+
+Type  : Fast 1100mV 85C Model Hold 'PS2_Demo:inputsfromKB|last_data_received[0]'
+Slack : -0.028
+TNS   : -0.028
+
+Type  : Fast 1100mV 85C Model Hold 'VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk'
+Slack : 0.252
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Hold 'draw:d2|q3[5]'
+Slack : 0.431
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Hold 'sequenceFSM:s1|currentState.FINISH'
+Slack : 1.311
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Hold 'drawControl:d1|currentState.DRAW'
+Slack : 1.639
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'gameLogicFSM:top|currentState.START'
+Slack : -0.753
+TNS   : -19.219
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'PS2_Demo:inputsfromKB|last_data_received[0]'
+Slack : -0.099
+TNS   : -0.099
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'draw:d2|q3[5]'
+Slack : 0.249
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'sequenceFSM:s1|currentState.FINISH'
+Slack : 0.293
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'drawControl:d1|currentState.DRAW'
+Slack : 0.333
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'VGA|mypll|altpll_component|auto_generated|generic_pll1~FRACTIONAL_PLL|vcoph[0]'
+Slack : 1.666
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'CLOCK_50'
+Slack : 8.812
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk'
+Slack : 18.886
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Setup 'gameLogicFSM:top|currentState.START'
+Slack : -5.831
+TNS   : -63.985
+
+Type  : Fast 1100mV 0C Model Setup 'draw:d2|q3[5]'
+Slack : -4.882
+TNS   : -37.527
+
+Type  : Fast 1100mV 0C Model Setup 'CLOCK_50'
+Slack : -4.071
+TNS   : -1315.736
+
+Type  : Fast 1100mV 0C Model Setup 'sequenceFSM:s1|currentState.FINISH'
+Slack : -3.636
+TNS   : -71.761
+
+Type  : Fast 1100mV 0C Model Setup 'PS2_Demo:inputsfromKB|last_data_received[0]'
+Slack : -2.879
+TNS   : -31.081
+
+Type  : Fast 1100mV 0C Model Setup 'drawControl:d1|currentState.DRAW'
+Slack : -1.802
+TNS   : -1.802
+
+Type  : Fast 1100mV 0C Model Setup 'VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk'
+Slack : 36.451
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Hold 'CLOCK_50'
+Slack : -0.754
+TNS   : -0.818
+
+Type  : Fast 1100mV 0C Model Hold 'gameLogicFSM:top|currentState.START'
+Slack : -0.226
+TNS   : -0.342
+
+Type  : Fast 1100mV 0C Model Hold 'PS2_Demo:inputsfromKB|last_data_received[0]'
+Slack : -0.079
+TNS   : -0.079
+
+Type  : Fast 1100mV 0C Model Hold 'VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk'
+Slack : 0.213
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Hold 'draw:d2|q3[5]'
+Slack : 0.350
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Hold 'sequenceFSM:s1|currentState.FINISH'
+Slack : 1.207
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Hold 'drawControl:d1|currentState.DRAW'
+Slack : 1.641
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'gameLogicFSM:top|currentState.START'
+Slack : -0.590
+TNS   : -14.754
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'PS2_Demo:inputsfromKB|last_data_received[0]'
+Slack : -0.068
+TNS   : -0.068
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'draw:d2|q3[5]'
+Slack : 0.293
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'sequenceFSM:s1|currentState.FINISH'
+Slack : 0.327
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'drawControl:d1|currentState.DRAW'
+Slack : 0.349
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'VGA|mypll|altpll_component|auto_generated|generic_pll1~FRACTIONAL_PLL|vcoph[0]'
+Slack : 1.666
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'CLOCK_50'
+Slack : 8.805
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk'
+Slack : 18.884
+TNS   : 0.000
+
+------------------------------------------------------------

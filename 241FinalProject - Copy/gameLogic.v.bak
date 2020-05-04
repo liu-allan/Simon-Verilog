@@ -1,0 +1,70 @@
+module gameLogicFSM(resetn, CLOCK_50, go, doneSequence, gameOver, correct, sequenceSize, displaySequence, drawCursor, loadLevel, startReading);
+	input resetn;
+	input CLOCK_50;
+	input go;
+	input doneSequence;
+	input gameOver;
+	input correct;
+	output reg loadLevel;
+	output reg [3:0] sequenceSize;
+	output reg displaySequence;
+	output reg drawCursor;
+	output reg startReading;
+//	wire [3:0] level;
+	reg [3:0] currentState, nextState;
+	localparam START = 4'd0,
+					STARTWAIT = 4'd1,
+					DISPLAYSEQUENCE = 4'd2,
+					INPUTSEQUENCE = 4'd3,
+					MOVECURSOR = 4'd4;
+	
+	always@(*)
+		begin
+			case(currentState)
+				START: nextState = go ? STARTWAIT : START;
+				STARTWAIT: nextState = go ? STARTWAIT : DISPLAYSEQUENCE;
+				DISPLAYSEQUENCE: nextState = doneSequence ?  MOVECURSOR : DISPLAYSEQUENCE;
+				MOVECURSOR: begin
+									if(gameOver == 1'b1)
+										nextState = START;
+									else	if(correct)
+										begin
+//											level = level + 1;
+											nextState = DISPLAYSEQUENCE;
+										end
+									else
+										nextState = MOVECURSOR;
+								end
+			endcase
+		end
+		
+	
+	always@(*)
+		begin
+			startReading = 1'b1;
+			drawCursor = 1'b1;
+			sequenceSize = 4'd0;
+			displaySequence = 1'b0;
+			loadLevel = 1'b0;
+			case(currentState)
+				START: loadLevel = 1'b1;
+				DISPLAYSEQUENCE: begin
+					sequenceSize = /*level +*/ 3;
+					displaySequence = 1'b1;
+					end
+				MOVECURSOR: begin
+					startReading = 1'b0;//drawCursor = 1'b0;
+					sequenceSize = /*level +*/ 3;
+					end
+			endcase
+		end
+	
+	always@(posedge CLOCK_50)
+		begin
+        if(!resetn)
+            currentState <= START;
+        else
+            currentState <= nextState;
+		end
+	
+endmodule

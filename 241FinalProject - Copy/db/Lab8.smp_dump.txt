@@ -1,0 +1,102 @@
+
+State Machine - |top|sequenceDetector:s2|y_Q
+Name y_Q.youWin y_Q.Incorrect y_Q.Correct y_Q.J y_Q.I y_Q.H y_Q.G y_Q.F y_Q.E y_Q.D y_Q.C y_Q.B y_Q.A 
+y_Q.A 0 0 0 0 0 0 0 0 0 0 0 0 0 
+y_Q.B 0 0 0 0 0 0 0 0 0 0 0 1 1 
+y_Q.C 0 0 0 0 0 0 0 0 0 0 1 0 1 
+y_Q.D 0 0 0 0 0 0 0 0 0 1 0 0 1 
+y_Q.E 0 0 0 0 0 0 0 0 1 0 0 0 1 
+y_Q.F 0 0 0 0 0 0 0 1 0 0 0 0 1 
+y_Q.G 0 0 0 0 0 0 1 0 0 0 0 0 1 
+y_Q.H 0 0 0 0 0 1 0 0 0 0 0 0 1 
+y_Q.I 0 0 0 0 1 0 0 0 0 0 0 0 1 
+y_Q.J 0 0 0 1 0 0 0 0 0 0 0 0 1 
+y_Q.Correct 0 0 1 0 0 0 0 0 0 0 0 0 1 
+y_Q.Incorrect 0 1 0 0 0 0 0 0 0 0 0 0 1 
+y_Q.youWin 1 0 0 0 0 0 0 0 0 0 0 0 1 
+
+State Machine - |top|drawControl:d1|currentState
+Name currentState.RESET_POSITION currentState.MOVE currentState.ERASE currentState.WAIT currentState.DRAW currentState.FINISH currentState.q3 currentState.q2 currentState.q1 currentState.q0 currentState.RESET 
+currentState.RESET 0 0 0 0 0 0 0 0 0 0 0 
+currentState.q0 0 0 0 0 0 0 0 0 0 1 1 
+currentState.q1 0 0 0 0 0 0 0 0 1 0 1 
+currentState.q2 0 0 0 0 0 0 0 1 0 0 1 
+currentState.q3 0 0 0 0 0 0 1 0 0 0 1 
+currentState.FINISH 0 0 0 0 0 1 0 0 0 0 1 
+currentState.DRAW 0 0 0 0 1 0 0 0 0 0 1 
+currentState.WAIT 0 0 0 1 0 0 0 0 0 0 1 
+currentState.ERASE 0 0 1 0 0 0 0 0 0 0 1 
+currentState.MOVE 0 1 0 0 0 0 0 0 0 0 1 
+currentState.RESET_POSITION 1 0 0 0 0 0 0 0 0 0 1 
+
+State Machine - |top|sequenceFSM:s1|currentState
+Name currentState.FINISH currentState.WAIT10 currentState.FLASH10 currentState.WAIT9 currentState.FLASH9 currentState.WAIT8 currentState.FLASH8 currentState.WAIT7 currentState.FLASH7 currentState.WAIT6 currentState.FLASH6 currentState.WAIT5 currentState.FLASH5 currentState.WAIT4 currentState.FLASH4 currentState.WAIT3 currentState.FLASH3 currentState.WAIT2 currentState.FLASH2 currentState.WAIT1 currentState.FLASH1 currentState.WAIT0 
+currentState.WAIT0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+currentState.FLASH1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 
+currentState.WAIT1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 
+currentState.FLASH2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 
+currentState.WAIT2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 
+currentState.FLASH3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 
+currentState.WAIT3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 
+currentState.FLASH4 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 
+currentState.WAIT4 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 
+currentState.FLASH5 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 
+currentState.WAIT5 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 
+currentState.FLASH6 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 
+currentState.WAIT6 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 
+currentState.FLASH7 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 
+currentState.WAIT7 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+currentState.FLASH8 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+currentState.WAIT8 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+currentState.FLASH9 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+currentState.WAIT9 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+currentState.FLASH10 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+currentState.WAIT10 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+currentState.FINISH 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+
+State Machine - |top|gameLogicFSM:top|currentState
+Name currentState.YOUWIN currentState.YOUWINWAIT currentState.YOULOSEWAIT currentState.YOULOSE currentState.WAIT currentState.MOVECURSOR currentState.DISPLAYSEQUENCE currentState.LOAD currentState.STARTWAIT currentState.START 
+currentState.START 0 0 0 0 0 0 0 0 0 0 
+currentState.STARTWAIT 0 0 0 0 0 0 0 0 1 1 
+currentState.LOAD 0 0 0 0 0 0 0 1 0 1 
+currentState.DISPLAYSEQUENCE 0 0 0 0 0 0 1 0 0 1 
+currentState.MOVECURSOR 0 0 0 0 0 1 0 0 0 1 
+currentState.WAIT 0 0 0 0 1 0 0 0 0 1 
+currentState.YOULOSE 0 0 0 1 0 0 0 0 0 1 
+currentState.YOULOSEWAIT 0 0 1 0 0 0 0 0 0 1 
+currentState.YOUWINWAIT 0 1 0 0 0 0 0 0 0 1 
+currentState.YOUWIN 1 0 0 0 0 0 0 0 0 1 
+
+State Machine - |top|PS2_Demo:inputsfromKB|current_state
+Name current_state.S_RESET current_state.S_RELEASE current_state.S_PRESSING current_state.S_WAIT 
+current_state.S_WAIT 0 0 0 0 
+current_state.S_PRESSING 0 0 1 1 
+current_state.S_RELEASE 0 1 0 1 
+current_state.S_RESET 1 0 0 1 
+
+State Machine - |top|PS2_Demo:inputsfromKB|PS2_Controller:PS2|s_ps2_transceiver
+Name s_ps2_transceiver.PS2_STATE_3_END_TRANSFER s_ps2_transceiver.PS2_STATE_2_COMMAND_OUT s_ps2_transceiver.PS2_STATE_1_DATA_IN s_ps2_transceiver.PS2_STATE_0_IDLE s_ps2_transceiver.PS2_STATE_4_END_DELAYED 
+s_ps2_transceiver.PS2_STATE_0_IDLE 0 0 0 0 0 
+s_ps2_transceiver.PS2_STATE_1_DATA_IN 0 0 1 1 0 
+s_ps2_transceiver.PS2_STATE_2_COMMAND_OUT 0 1 0 1 0 
+s_ps2_transceiver.PS2_STATE_3_END_TRANSFER 1 0 0 1 0 
+s_ps2_transceiver.PS2_STATE_4_END_DELAYED 0 0 0 1 1 
+
+State Machine - |top|PS2_Demo:inputsfromKB|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter
+Name s_ps2_transmitter.PS2_STATE_7_TRANSMISSION_ERROR s_ps2_transmitter.PS2_STATE_6_COMMAND_WAS_SENT s_ps2_transmitter.PS2_STATE_5_RECEIVE_ACK_BIT s_ps2_transmitter.PS2_STATE_4_TRANSMIT_STOP_BIT s_ps2_transmitter.PS2_STATE_3_TRANSMIT_DATA s_ps2_transmitter.PS2_STATE_2_WAIT_FOR_CLOCK s_ps2_transmitter.PS2_STATE_1_INITIATE_COMMUNICATION s_ps2_transmitter.PS2_STATE_0_IDLE 
+s_ps2_transmitter.PS2_STATE_0_IDLE 0 0 0 0 0 0 0 0 
+s_ps2_transmitter.PS2_STATE_1_INITIATE_COMMUNICATION 0 0 0 0 0 0 1 1 
+s_ps2_transmitter.PS2_STATE_2_WAIT_FOR_CLOCK 0 0 0 0 0 1 0 1 
+s_ps2_transmitter.PS2_STATE_3_TRANSMIT_DATA 0 0 0 0 1 0 0 1 
+s_ps2_transmitter.PS2_STATE_4_TRANSMIT_STOP_BIT 0 0 0 1 0 0 0 1 
+s_ps2_transmitter.PS2_STATE_5_RECEIVE_ACK_BIT 0 0 1 0 0 0 0 1 
+s_ps2_transmitter.PS2_STATE_6_COMMAND_WAS_SENT 0 1 0 0 0 0 0 1 
+s_ps2_transmitter.PS2_STATE_7_TRANSMISSION_ERROR 1 0 0 0 0 0 0 1 
+
+State Machine - |top|PS2_Demo:inputsfromKB|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In|s_ps2_receiver
+Name s_ps2_receiver.PS2_STATE_3_PARITY_IN s_ps2_receiver.PS2_STATE_2_DATA_IN s_ps2_receiver.PS2_STATE_1_WAIT_FOR_DATA s_ps2_receiver.PS2_STATE_0_IDLE s_ps2_receiver.PS2_STATE_4_STOP_IN 
+s_ps2_receiver.PS2_STATE_0_IDLE 0 0 0 0 0 
+s_ps2_receiver.PS2_STATE_1_WAIT_FOR_DATA 0 0 1 1 0 
+s_ps2_receiver.PS2_STATE_2_DATA_IN 0 1 0 1 0 
+s_ps2_receiver.PS2_STATE_3_PARITY_IN 1 0 0 1 0 
+s_ps2_receiver.PS2_STATE_4_STOP_IN 0 0 0 1 1 
